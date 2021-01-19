@@ -4,10 +4,10 @@ import com.anatolii.webShopApp.model.Client;
 import com.anatolii.webShopApp.service.ClientService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -31,7 +31,10 @@ public class ClientController {
     }
 
     @PostMapping("/client-create")
-    public String createClient(Client client){
+    public String createClient(@Valid @ModelAttribute Client client, BindingResult result){
+        if(result.hasErrors()){
+            return "client-create";
+        }
         clientService.saveClient(client);
         return "redirect:/clients";
     }

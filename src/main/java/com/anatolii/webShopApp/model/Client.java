@@ -3,15 +3,23 @@ package com.anatolii.webShopApp.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Client {
     @Id
     @GeneratedValue
     private int id;
+    @NotEmpty(message = "Not empty")
     private String firstName;
+    @NotBlank(message = "Not empty")
     private String lastName;
+    @Email(message = "Incorrect email")
     private String email;
+    @Size(min = 4, max = 100, message = "Password should be from 4 to 100 symbols")
     private String password;
 
     public Client() {
