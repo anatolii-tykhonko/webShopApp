@@ -18,6 +18,7 @@ public class Client {
     @NotBlank(message = "Not empty")
     private String lastName;
     @Email(message = "Incorrect email")
+    @NotBlank(message = "Not empty")
     private String email;
     @Size(min = 4, max = 100, message = "Password should be from 4 to 100 symbols")
     private String password;

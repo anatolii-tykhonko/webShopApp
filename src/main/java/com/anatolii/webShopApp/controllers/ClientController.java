@@ -53,7 +53,10 @@ public class ClientController {
     }
 
     @PostMapping("client-update")
-    public String updateClient(Client client){
+    public String updateClient(@Valid @ModelAttribute Client client, BindingResult result){
+        if(result.hasErrors()){
+            return "/client-update";
+        }
         clientService.saveClient(client);
         return "redirect:/clients";
     }
