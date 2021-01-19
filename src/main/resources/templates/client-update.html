@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit client info</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: black;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Add padding to containers */
+        .container {
+            padding: 16px;
+            background-color: white;
+        }
+
+        /* Full-width input fields */
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        /* Overwrite default styles of hr */
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        /* Set a style for the submit button */
+        .Create Client {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+        /* Add a blue text color to links */
+        a {
+            color: dodgerblue;
+        }
+
+    </style>
+</head>
+<body>
+<form action="#" th:action="@{/client-update}" th:object ="${client}" method="post">
+    <div class="container">
+        <h1>Update</h1>
+        <p>Please fill in this form to update an account.</p>
+        <hr>
+    <label for="id">ID</label>
+    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+    <br/>
+    <label for="firstName"><b>First name</b></label>
+    <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name"/>
+    <br>
+    <label for="lastName"><b>Last name:</b></label>
+    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name"/>
+    <br>
+    <label for="email"><b>Email:</b></label>
+    <input type="text" th:field="*{email}" id="email" placeholder="Email"/>
+    <br>
+    <label for="password"><b>Password:</b></label>
+    <input type="password" th:field="*{password}" id="password" placeholder="Enter new password"/>
+    <br>
+    <input type="submit" value="Update Client info"/>
+    </div>
+</form>
+
+</body>
+</html>
