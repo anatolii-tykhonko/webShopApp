@@ -20,6 +20,12 @@ public class ClientService {
         return clientJPARepository.getOne(id);
     }
 
+    public Client findByEmail(String email){
+        return clientJPARepository.findAll().stream()
+                .filter(client1 -> client1.getEmail().equals(email))
+                .findFirst().orElse(null);
+    }
+
     public List<Client> findAll(){
         return clientJPARepository.findAll();
     }

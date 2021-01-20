@@ -2,6 +2,7 @@ package com.anatolii.webShopApp.controllers;
 
 import com.anatolii.webShopApp.model.Client;
 import com.anatolii.webShopApp.service.ClientService;
+import com.anatolii.webShopApp.util.ClientValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,9 +14,11 @@ import java.util.List;
 @Controller
 public class ClientController {
     private final ClientService clientService;
+    private final ClientValidator clientValidator;
 
-    public ClientController(ClientService clientService) {
+    public ClientController(ClientService clientService, ClientValidator clientValidator) {
         this.clientService = clientService;
+        this.clientValidator = clientValidator;
     }
 
     @GetMapping("/clients")
@@ -32,6 +35,7 @@ public class ClientController {
 
     @PostMapping("/client-create")
     public String createClient(@Valid @ModelAttribute Client client, BindingResult result){
+        clientValidator.validate(client, result);
         if(result.hasErrors()){
             return "client-create";
         }
